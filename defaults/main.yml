@@ -1,0 +1,13 @@
+---
+radarr_container_name: "radarr"
+radarr_user: "plex"
+radarr_group: "plex"
+radarr_timezone: "America/New_York"
+
+radarr_config_dir: "/Media/_radarr/"
+radarr_download_dir: "/Media/_transmission/transmission_workdir/"
+radarr_movie_dir: "/Media/Movies"
+
+radarr_port_internal: 7878
+radarr_port_external: 7878
+

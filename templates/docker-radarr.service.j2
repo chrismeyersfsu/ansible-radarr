@@ -1,0 +1,23 @@
+[Unit]
+Description=Radarr docker container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=30
+
+ExecStart=/usr/bin/docker run --rm \
+                              --name={{ radarr_container_name }} \
+                              -v {{ radarr_config_dir }}:/config \
+                              -v {{ radarr_download_dir }}:/downloads \
+                              -v {{ radarr_movie_dir }}:/movies \
+                              -e PGID={{ result_gid.stdout }} -e PUID={{ result_uid.stdout }}  \
+                              -e TZ={{ radarr_timezone }} \
+                              -p {{ radarr_port_external }}:{{ radarr_port_internal }} \
+                              linuxserver/radarr
+
+ExecStop=/usr/bin/docker stop radarr
+
+[Install]
+WantedBy=multi-user.target
